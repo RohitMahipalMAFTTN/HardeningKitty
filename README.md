@@ -9,11 +9,10 @@ _HardeningKitty_ supports hardening of a Windows system. The configuration of th
 
 Run the script with administrative privileges to access machine settings. For the user settings it is better to execute them with a normal user account. Ideally, the user account is used for daily work.
 
-Download _HardeningKitty_ and copy it to the target system (script and policies). After that HardeningKitty can be imported and executed:
+### Steps
 
-```powershell
-PS C:\tmp> Import-Module .\Invoke-HardeningKitty.ps1
-```
+| Steps | Command | Descriptions |
+| :---- | :------------ | :------------------ |
 
 ## Examples
 
