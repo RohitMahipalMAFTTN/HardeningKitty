@@ -1,62 +1,18 @@
-# HardeningKitty
+# Windows Hardening 
 
-This is the stable version of _HardeningKitty_ from the [Windows Hardening Project by Michael Schneider](https://github.com/0x6d69636b/windows_hardening). The stable version of _HardeningKitty_ is signed with the code signing certificate of _scip AG_.
+This is the Powershell Script for Hardening the Microsoft Windows Servers ( _HardeningKitty_ )
 
 _HardeningKitty_ supports hardening of a Windows system. The configuration of the system is retrieved and assessed using a finding list. In addition, the system can be hardened according to predefined values. _HardeningKitty_ reads settings from the registry and uses other modules to read configurations outside the registry.
 
-The script was developed for English systems. It is possible that in other languages the analysis is incorrect. Please create an issue if this occurs.
 
 ## How to run
 
 Run the script with administrative privileges to access machine settings. For the user settings it is better to execute them with a normal user account. Ideally, the user account is used for daily work.
 
-Download _HardeningKitty_ and copy it to the target system (script and lists). After that HardeningKitty can be imported and executed:
+Download _HardeningKitty_ and copy it to the target system (script and policies). After that HardeningKitty can be imported and executed:
 
 ```powershell
 PS C:\tmp> Import-Module .\Invoke-HardeningKitty.ps1
-PS C:\tmp> Invoke-HardeningKitty -EmojiSupport
-
-
-         =^._.^=
-        _(      )/  HardeningKitty 0.6.1-1628003775
-
-
-[*] 8/7/2021 7:27:04 AM - Starting HardeningKitty
-
-
-[*] 8/7/2021 7:27:04 AM - Getting machine information
-[*] Hostname: DESKTOP-DG83TOD
-[*] Domain: WORKGROUP
-
-...
-
-[*] 8/7/2021 7:27:09 AM - Starting Category Account Policies
-[😺] ID 1103, Store passwords using reversible encryption, Result=0, Severity=Passed
-[😺] ID 1100, Account lockout threshold, Result=10, Severity=Passed
-[😺] ID 1101, Account lockout duration, Result=30, Severity=Passed
-
-...
-
-[*] 8/7/2021 7:27:09 AM - Starting Category User Rights Assignment
-[😿] ID 1200, Access this computer from the network, Result=BUILTIN\Administrators;BUILTIN\Users, Recommended=BUILTIN\Administrators, Severity=Medium
-
-...
-
-[*] 8/7/2021 7:27:12 AM - Starting Category Administrative Templates: Printer
-[🙀] ID 1764, Point and Print Restrictions: When installing drivers for a new connection (CVE-2021-34527), Result=1, Recommended=0, Severity=High
-[🙀] ID 1765, Point and Print Restrictions: When updating drivers for an existing connection (CVE-2021-34527), Result=2, Recommended=0, Severity=High
-
-...
-
-[*] 8/7/2021 7:27:19 AM - Starting Category MS Security Guide
-[😿] ID 2200, LSA Protection, Result=, Recommended=1, Severity=Medium
-[😼] ID 2201, Lsass.exe audit mode, Result=, Recommended=8, Severity=Low
-
-...
-
-[*] 8/7/2021 7:27:48 AM - HardeningKitty is done
-[*] 8/7/2021 7:27:48 AM - Your HardeningKitty score is: 4.82. HardeningKitty Statistics: Total checks: 325 - Passed: 213, Low: 33, Medium: 76, High: 3.
-```
 
 ## Examples
 
