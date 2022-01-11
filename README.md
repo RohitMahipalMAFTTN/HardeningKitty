@@ -14,10 +14,10 @@ Run the script with administrative privileges to access machine settings. For th
 | Steps | Command | Descriptions |
 | :---- | :------------ | :------------------ |
 | 1 | git clone git@github.com:scipag/HardeningKitty.git | Clone the Hardening Kitty Repo using this repo as source code. |
-|  | Import-Module .\Invoke-HardeningKitty.ps1 | Initalizing the Powershell Script as Administator Access |
-|  | Invoke-HardeningKitty -Mode Audit -Log -Report -ReportFile .\report\start_report.csv -FileFindingList .'\polices\final windows-hardening.csv' | Checking the Policies to be change before the Policies are applied as per your policies csv file. |
-|  | Invoke-HardeningKitty -Mode HailMary -Log -Report -ReportFile .\report\result.csv -FileFindingList .'\polices\final windows-hardening.csv' | Applying the policies to the target server |
-|  | Invoke-HardeningKitty -Mode Audit -Log -Report -ReportFile .\report\end_report.csv -FileFindingList .'\polices\final windows-hardening.csv' | Checking the Policies to be change after the Policies are applied as per your policies csv file. |
+| 2 | Import-Module .\Invoke-HardeningKitty.ps1 | Initalizing the Powershell Script as Administator Access |
+| 3 | Invoke-HardeningKitty -Mode Audit -Log -Report -ReportFile .\report\start_report.csv -FileFindingList .'\polices\final windows-hardening.csv' | Checking the Policies to be change before the Policies are applied as per your policies csv file. |
+| 4 | Invoke-HardeningKitty -Mode HailMary -Log -Report -ReportFile .\report\result.csv -FileFindingList .'\polices\final windows-hardening.csv' | Applying the policies to the target server |
+| 5 | Invoke-HardeningKitty -Mode Audit -Log -Report -ReportFile .\report\end_report.csv -FileFindingList .'\polices\final windows-hardening.csv' | Checking the Policies to be change after the Policies are applied as per your policies csv file. |
 
 ## Examples
 
