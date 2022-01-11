@@ -13,6 +13,11 @@ Run the script with administrative privileges to access machine settings. For th
 
 | Steps | Command | Descriptions |
 | :---- | :------------ | :------------------ |
+| 1 | git clone git@github.com:scipag/HardeningKitty.git | Clone the Hardening Kitty Repo using this repo as source code. |
+|  | Import-Module .\Invoke-HardeningKitty.ps1 | Initalizing the Powershell Script as Administator Access |
+|  | Invoke-HardeningKitty -Mode Audit -Log -Report -ReportFile .\report\start_report.csv -FileFindingList .'\polices\final windows-hardening.csv' | Checking the Policies to be change before the Policies are applied as per your policies csv file. |
+|  | Invoke-HardeningKitty -Mode HailMary -Log -Report -ReportFile .\report\result.csv -FileFindingList .'\polices\final windows-hardening.csv' | Applying the policies to the target server |
+|  | Invoke-HardeningKitty -Mode Audit -Log -Report -ReportFile .\report\end_report.csv -FileFindingList .'\polices\final windows-hardening.csv' | Checking the Policies to be change after the Policies are applied as per your policies csv file. |
 
 ## Examples
 
@@ -27,13 +32,13 @@ Invoke-HardeningKitty -Mode Audit -Log -Report
 HardeningKitty can be executed with a specific list defined by the parameter _FileFindingList_. If HardeningKitty is run several times on the same system, it may be useful to hide the machine information. The parameter _SkipMachineInformation_ is used for this purpose.
 
 ```powershell
-Invoke-HardeningKitty -FileFindingList .\lists\finding_list_0x6d69636b_user.csv -SkipMachineInformation
+Invoke-HardeningKitty -FileFindingList .'\polices\final windows-hardening.csv' -SkipMachineInformation
 ```
 
 HardeningKitty ready only the setting with the default list, and saves the results in a specific file
 
 ```powershell
-Invoke-HardeningKitty -Mode Config -Report -ReportFile C:\tmp\my_hardeningkitty_report.log
+Invoke-HardeningKitty -Mode Config -Report -ReportFile .\report\start_report.csv
 ```
 
 ### Backup
@@ -51,7 +56,7 @@ Please test this function to see if it really works properly on the target syste
 The _HailMary_ method is very powerful. It can be used to deploy a finding list on a system. All findings are set on this system as recommended in the list. With power comes responsibility. Please use this mode only if you know what you are doing. Be sure to have a backup of the system.
 
 ```powershell
-Invoke-HardeningKitty -Mode HailMary -Log -Report -FileFindingList .\lists\finding_list_0x6d69636b_machine.csv
+Invoke-HardeningKitty -Mode HailMary -Log -Report -FileFindingList .'\polices\final windows-hardening.csv'
 ```
 
 ## HardeningKitty Score
@@ -70,72 +75,3 @@ The formula for the HardeningKitty Score is _(Points achieved / Maximum points) 
 | 3 | 😿 You should do better | Insufficient |
 | 2 | 🙀 Weak | Insufficient |
 | 1 | 😾 Bogus | Insufficient |
-
-## HardeningKitty Interface
-
-[ataumo](https://github.com/ataumo) build a web based interface for HardeningKitty. The tool can be used to create your own lists and provides additional information on the hardening settings. The [source code](https://github.com/ataumo/policies_hardening_interface) is under AGPL license and there is a [demo site](https://phi.cryptonit.fr/policies_hardening_interface/).
-
-## Last Update
-
-HardeningKitty can be used to audit systems against the following baselines / benchmarks:
-
-| Name | System Version    | Version  |
-| :--- | :---------------- | :------  |
-| 0x6d69636b (Machine) | 20H2, 21H1 | |
-| 0x6d69636b (User) | 20H2, 21H1 | |
-| BSI SiSyPHuS Windows 10 hoher Schutzbedarf Domänenmitglied (Machine) | 1809 | 1.0 |
-| BSI SiSyPHuS Windows 10 hoher Schutzbedarf Domänenmitglied (User) | 1809| 1.0
-| BSI SiSyPHuS Windows 10 normaler Schutzbedarf Domänenmitglied (Machine) | 1809| 1.0 |
-| BSI SiSyPHuS Windows 10 normaler Schutzbedarf Domänenmitglied (User) | 1809| 1.0 |
-| BSI SiSyPHuS Windows 10 normaler Schutzbedarf Einzelrechner (Machine) | 1809| 1.0 |
-| BSI SiSyPHuS Windows 10 normaler Schutzbedarf Einzelrechner (User) | 1809 | 1.0 |
-| CIS Microsoft Windows 10 Enterprise (Machine) | 1809 | 1.6.1 |
-| CIS Microsoft Windows 10 Enterprise (User) | 1809 | 1.6.1 |
-| CIS Microsoft Windows 10 Enterprise (Machine) | 1903 | 1.7.1 |
-| CIS Microsoft Windows 10 Enterprise (User) | 1903 | 1.7.1 |
-| CIS Microsoft Windows 10 Enterprise (Machine) | 1909 | 1.8.1 |
-| CIS Microsoft Windows 10 Enterprise (User) | 1909 | 1.8.1 |
-| CIS Microsoft Windows 10 Enterprise (Machine) | 2004 | 1.9.1 |
-| CIS Microsoft Windows 10 Enterprise (User) | 2004 | 1.9.1 |
-| CIS Microsoft Windows 10 Enterprise (Machine) | 20H2 | 1.10.1 |
-| CIS Microsoft Windows 10 Enterprise (User) | 20H2 | 1.10.1 |
-| CIS Microsoft Windows Server 2012 R2 (Machine) | R2 | 2.4.0 |
-| CIS Microsoft Windows Server 2012 R2 (User) | R2 | 2.4.0 |
-| CIS Microsoft Windows Server 2016 (Machine) | 1607 | 1.2.0 |
-| CIS Microsoft Windows Server 2016 (User) | 1607 | 1.2.0 |
-| CIS Microsoft Windows Server 2019 (Machine) | 1809 | 1.1.0 |
-| CIS Microsoft Windows Server 2019 (User) | 1809 | 1.1.0 |
-| CIS Microsoft Windows Server 2019 (Machine) | 1809 | 1.2.0 |
-| CIS Microsoft Windows Server 2019 (User) | 1809 | 1.2.0 |
-| DoD Microsoft Windows 10 STIG (Machine) | 20H2 | v2r1 |
-| DoD Microsoft Windows 10 STIG (User) | 20H2 | v2r1 |
-| DoD Windows Server 2019 Domain Controller STIG (Machine) | 20H2 | v2r1 |
-| DoD Windows Server 2019 Domain Controller STIG (User) | 20H2 | v2r1 |
-| DoD Windows Server 2019 Member Server STIG (Machine) | 20H2 | v2r1 |
-| DoD Windows Server 2019 Member Server STIG (User) | 20H2 | v2r1 |
-| DoD Windows Defender Antivirus STIG | 20H2 | v2r1 |
-| DoD Windows Firewall STIG | 20H2 | v1r7 |
-| Microsoft Security baseline for Microsoft Edge | 87 | Final |
-| Microsoft Security baseline for Microsoft Edge | 88, 89, 90, 91 | Final |
-| Microsoft Security baseline for Microsoft Edge | 92 | Final |
-| Microsoft Security baseline for Microsoft Edge | 93, 94 | Final |
-| Microsoft Security baseline for Microsoft Edge | 95 | Final |
-| Microsoft Security baseline for Microsoft Edge | 96 | Final |
-| Microsoft Security baseline for Windows 10 | 2004 | Final |
-| Microsoft Security baseline for Windows 10 | 20H2, 21H1 | Final |
-| Microsoft Security baseline for Windows 10 | 21H2 | Final |
-| Microsoft Security baseline for Windows 11 | 21H2 | Final |
-| Microsoft Security baseline for Windows Server (DC) | 2004 | Final |
-| Microsoft Security baseline for Windows Server (Member) | 2004 | Final |
-| Microsoft Security baseline for Windows Server (DC) | 20H2 | Final |
-| Microsoft Security baseline for Windows Server (Member) | 20H2 | Final |
-| Microsoft Security baseline for Windows Server 2022 (DC) | 21H2 | Final |
-| Microsoft Security baseline for Windows Server 2022 (Member) | 21H2 | Final |
-| Microsoft Security baseline for Office 365 ProPlus (Machine) | Sept 2019 | Final |
-| Microsoft Security baseline for Office 365 ProPlus (User) | Sept 2019 | Final |
-| Microsoft Security Baseline for Microsoft 365 Apps for enterprise (Machine) | v2104, v2106 | Final |
-| Microsoft Security Baseline for Microsoft 365 Apps for enterprise (User) | v2104, v2106 | Final |
-| Microsoft Security Baseline for Microsoft 365 Apps for enterprise (Machine) | v2112 | Final |
-| Microsoft Security Baseline for Microsoft 365 Apps for enterprise (User) | v2112 | Final |
-| Microsoft Windows Server TLS Settings | 1809 | 1.0 |
-| Microsoft Windows Server TLS Settings (Future Use with TLSv1.3) | 1903 | 1.0 |
