@@ -13,7 +13,7 @@ Download _HardeningKitty_ and copy it to the target system (script and policies)
 
 ```powershell
 PS C:\tmp> Import-Module .\Invoke-HardeningKitty.ps1
-
+'''
 ## Examples
 
 ### Audit
